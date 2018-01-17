@@ -2,14 +2,14 @@
 **Experimental** Dockerfile for an _unofficial_ Apama Core Community Edition on a Microsoft Windows Server Nano Server (simply referred to as "nanoserver") base image for Windows Containers
 
 ## Images and tags
-The image can be found on DockerHub as specific tags on the kpalf/apamacore repo.  The images there are for a mix of architectures and Operating Systems, so please carefully choose he correct tag.
+The image can be found on DockerHub as specific tags on the `kpalf/apamacore` repo.  The images there are for a mix of architectures and Operating Systems, so please carefully choose he correct tag.
 
 Lookup the tags at: https://hub.docker.com/r/kpalf/apamacore/tags/
 
 
 ## Base image
-Windows Server Nano Server has undergone significant changes since first release.  The first LTS or GA release is known as "10.0.14393.<build-number>" and is around 400MB.
-However, the ones we want are the smaller ones that started with the "Fall Creators Update" or "1709", with tags "1709_KB<knowledge-base-id>".  These started nice and small at 93MB, but have grown with each monthly update - the Jan 2018 is 124MB.
+Windows Server Nano Server has undergone significant changes since first release.  The first LTS or GA release is known as `"10.0.14393.<build-number>"` and is around 400MB.
+However, the ones we want are the smaller ones that started with the "Fall Creators Update" or "1709", with tags `"1709_KB<knowledge-base-id>"`.  These started nice and small at 93MB, but have grown with each monthly update - the Jan 2018 is 124MB.
 
 
 ## Building
