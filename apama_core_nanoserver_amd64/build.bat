@@ -1,0 +1,1 @@
+docker build -t apamacore:nanoserver_amd64 .
