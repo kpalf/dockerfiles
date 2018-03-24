@@ -7,8 +7,8 @@
 
 ############################################################
 # This Docker file assumes that the zip file:
-#    https://downloads.apamacommunity.com/apama-core/10.1.0.3/apama_core_10.1.0.3_amd64_win.zip
-# has been downloaded and extracted to folder named "apama_core_10.1.0.3_amd64_win" 
+#    https://downloads.apamacommunity.com/apama-core/10.1.0.5/apama_core_10.1.0.5_amd64_win.zip
+# has been downloaded and extracted to folder named "apama_core_10.1.0.5_amd64_win" 
 # alongside this Dockerfile
 ############################################################
 
@@ -19,7 +19,7 @@ LABEL \
     arch="x86-64" \
     base="microsoft/nanoserver:1709" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20180122"
+    build-date="20180324"
 
 # Set environment variables inside the image
 ENV \
@@ -30,7 +30,7 @@ ENV \
 
 # simple local filesystem copy for now (makes use of the WORKDIR)
 WORKDIR /apamacce
-COPY ./apama_core_10.1.0.3_amd64_win ./
+COPY ./apama_core_10.1.0.5_amd64_win ./
 RUN setx PATH %PATH%;%APAMA_HOME%\bin 
 
 
