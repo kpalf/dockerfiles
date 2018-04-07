@@ -8,9 +8,9 @@ Lookup the tags at: https://hub.docker.com/r/kpalf/apamacore/tags/
 
 You will also see tags for Apama Core on a Windows Server version 1709 Nano Server base image, so please be careful.
 
-For example, for the nanoserver base initially there will be the following tagged image that you can pull with the following command:
+For example, for the CentOS (amd64) base initially there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.1.0.3_centos_amd64
+docker pull kpalf/apamacore:10.1.0.5_centos_amd64
 ```
 
 ## Unofficial
