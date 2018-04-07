@@ -1,5 +1,5 @@
-# (Unofficial) Apama Core Community Edition on Raspian Linux for ARMv7hf 
-Dockerfile for an _unofficial_ Apama Core Community Edition on a Raspian base image for the 
+# (Unofficial) Apama Core Community Edition on Raspbian Linux for ARMv7hf 
+Dockerfile for an _unofficial_ Apama Core Community Edition on a Raspbian base image for the 
 ARMv7hf (and later) architecture, such as the *Raspberry Pi* Model B version 2, 3, or 3+.  
 
 *Note:* Apama will _not_ run on less capable hardware such as the ARMv6 architecture in the Pi Zero/ZeroW or the older v1.
@@ -11,9 +11,9 @@ Lookup the tags at: https://hub.docker.com/r/kpalf/apamacore/tags/
 
 You will also see tags for Apama Core on CentOS for amd64 (default), and for Windows Server version 1709 Nano Server (amd64) base images, so please be careful.
 
-For example, for the Raspian (ARMv7hf) base initially there will be the following tagged image that you can pull with the following command:
+For example, for the Raspbian (ARMv7hf) base initially there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.1.0.5_raspian_armv7hf
+docker pull kpalf/apamacore:10.1.0.5_raspbian_armv7hf
 ```
 
 ## Unofficial
@@ -27,8 +27,8 @@ To find out more about Apama, access full documentation, and download the distri
 
 
 ## Base image
-The base image is "resin/rpi-raspian:jessie", but at some point I'll upgrade to "stretch".
-The Raspian base is actually armv6, but that ought to be OK as the OS direct from RaspberryPi.org is the same.
+The base image is "resin/rpi-raspbian:jessie", but at some point I'll upgrade to "stretch".
+The Raspbian base is actually armv6, but that ought to be OK as the OS direct from RaspberryPi.org is the same.
 It's possible in future we might switch the base image from Raspbian (armv6hf) to Debian (armv7hf).
 
 See the Docker Hub info on the base image: https://hub.docker.com/r/resin/rpi-raspbian/

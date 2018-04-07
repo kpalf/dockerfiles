@@ -1,2 +1,2 @@
 #!/bin/sh
-docker build -t apamacore:raspian_armv7hf .
+docker build -t apamacore:raspbian_armv7hf .

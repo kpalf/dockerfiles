@@ -1,9 +1,9 @@
-FROM resin/rpi-raspian:jessie
+FROM resin/rpi-raspbian:jessie
 
 LABEL \
     name="Apama Core Community Edition" \
     arch="armv7hf" \
-    base="resin/rpi-raspian:jessie" \
+    base="resin/rpi-raspbian:jessie" \
     maintainer="Kev Palfreyman (@kpalf)" \
     build-date="20180407"
 
