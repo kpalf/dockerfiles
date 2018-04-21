@@ -23,7 +23,7 @@ LABEL \
 
 # Set environment variables inside the image
 ENV \
-    APAMA_HOME=C:\\apamacce 
+    APAMA_HOME=C:\\apamacce\\Apama 
 
 # Get/download the compressed archive of Apama Core Community Edition, and unzip it
 ### Can't do that yet so use local filesystem
@@ -31,7 +31,7 @@ ENV \
 # simple local filesystem copy for now (makes use of the WORKDIR)
 WORKDIR /apamacce
 COPY ./apama_core_10.2.0.1_amd64_win ./
-RUN setx PATH %PATH%;%APAMA_HOME%\bin 
+RUN setx PATH %PATH%;%APAMA_HOME%\bin;%APAMA_HOME%\..\common\security\openssl\bin 
 
 
 # Standard server port for the correlator CEP/Streaming-Analytics engine
