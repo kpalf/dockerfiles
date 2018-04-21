@@ -1,1 +1,1 @@
-docker tag apamacore:nanoserver_amd64 kpalf/apamacore:10.1.0.5_nanoserver_amd64_1709
+docker tag apamacore:nanoserver_amd64 kpalf/apamacore:10.2.0.1_nanoserver_amd64_1709
