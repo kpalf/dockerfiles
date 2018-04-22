@@ -18,8 +18,8 @@ RUN \
 # Set environment variables inside the image
 ENV \
     APAMA_HOME=/opt/apamacce \
-    PATH=/opt/apamacce/bin:$PATH \
-    LD_LIBRARY_PATH=/opt/apamacce/lib:$LD_LIBRARY_PATH 
+    PATH=/opt/apamacce/Apama/bin:$PATH \
+    LD_LIBRARY_PATH=/opt/apamacce/Apama/lib:/opt/apamacce/Apama/../common/security/openssl/lib:$LD_LIBRARY_PATH 
 
 # Standard server port for the correlator CEP/Streaming-Analytics engine
 EXPOSE 15903
