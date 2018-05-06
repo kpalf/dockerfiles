@@ -13,7 +13,7 @@ You will also see tags for Apama Core on CentOS for amd64 (default), and for Win
 
 For example, for the Raspbian (ARMv7hf) base initially there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.1.0.5_raspbian_armv7hf
+docker pull kpalf/apamacore:10.2.0.1_raspbian_armv7hf
 ```
 
 ## Unofficial

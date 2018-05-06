@@ -10,7 +10,7 @@ You will also see tags for Apama Core on a CentOS base image, so please be caref
 
 For example, for the nanoserver base initially there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.1.0.5_nanoserver_amd64_1709
+docker pull kpalf/apamacore:10.2.0.1_nanoserver_amd64_1709
 ```
 
 ## Unofficial
