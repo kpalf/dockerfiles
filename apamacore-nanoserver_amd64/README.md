@@ -6,11 +6,12 @@ The image can be found on DockerHub as specific tags on the `kpalf/apamacore` re
 
 Lookup the tags at: https://hub.docker.com/r/kpalf/apamacore/tags/
 
-You will also see tags for Apama Core on a CentOS base image, so please be careful.
+You will also see tags for Apama Core on other base images such as CentOS (amd64), Ubuntu (amd64), Raspbian (ARM32v7hf), so please be careful.
 
-For example, for the nanoserver base initially there will be the following tagged image that you can pull with the following command:
+The first nanoserver image for this repository was using version 1709, but as new releases become available it's moved forward, for example with version 1803.
+The nanoserver 1803 based image for Apama Core can be pulled with the following command:
 ```
-docker pull kpalf/apamacore:10.2.0.1_nanoserver_amd64_1709
+docker pull kpalf/apamacore:10.2.0.1_nanoserver_amd64_1803
 ```
 
 ## Unofficial
@@ -25,18 +26,19 @@ To find out more about Apama, access full documentation, and download the distri
 
 ## Base image
 Windows Server Nano Server has undergone significant changes since first release.  The first LTS or GA release is known as `"10.0.14393.<build-number>"` and is around 400MB.
-However, the ones we want are the smaller ones that started with the "Fall Creators Update" or "1709", with tags `"1709_KB<knowledge-base-id>"`.  These started nice and small at 93MB, but have grown with each monthly update - the Jan 2018 is 124MB.
+However, the ones we want are the smaller ones that started with the "Fall Creators Update" or "1709", with tags `"1709_KB<knowledge-base-id>"`, and later the "1803" release.  The 1709 release started nice and small at 93MB when it was first released, but have grown with each monthly update - the May 2018 is 132MB.  The first 1803 release in May 2018 is 115MB.
 
-To use the nanoserver 1709 image, and layered images such as this one, your host OS needs to be either Windows 10 (Fall Creators Update), or Windows Server version 1709.
+To use the nanoserver 1709 image, and layered images such as this one, your host OS needs to be either Windows 10 (Fall Creators Update / 1709), or Windows Server version 1709.
+To use the nanoserver 1803 image, and layered images such as this one, your host OS needs to be either Windows 10 (1803), or Windows Server version 1803.  The 1803 image might work on a 1709 host but is NOT recommended (I don't test this).
+
 For more info on Windows Container version compatibility wee the following:
 https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility
 
 
 ## Building
-The nanoserver:1709 version is nice and small due to removal of things like Windows Powershell, but that makes downloading and extracting remote archives tricky when building the image from the Dockerfile.
+The nanoserver:1709 version is nice and small due to removal of things like Windows Powershell, but that makes downloading and extracting remote archives tricky when building the image from the Dockerfile. So building the earlier 1709 versions of this image needed the Apama Core archive to be downloaded and extracted on the host filesytem alongside the Dockerfile.  To see how this was done, look in the GitHub history of this repo.
 
-This Dockerfile will be improved in future (e.g. multi-stage), but for now it assumes the Apama Core archive has been downloaded and extracted on the host filesytem alongside the Dockerfile.
-
+Since nanoserver:1803 added curl and bsdtar, that meant that the Dockerfile could be improved to automatically download and extract the Apama Core archive as part of the build.
 
 ## Licenses
 Please refer to the following URL for terms for the Microsoft nanoserver base image:
