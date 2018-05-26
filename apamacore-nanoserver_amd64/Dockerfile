@@ -42,6 +42,7 @@ LABEL \
 
 # Set environment variables inside the image
 ENV \
+    SAG_HOME=${SAG_HOME} \
     APAMA_HOME=${SAG_HOME}\\Apama \
     APAMA_WORK=C:\\ApamaWork \
     APAMA_LIBRARY_VERSION=${ACCE_LIBRARY_VERSION} \
