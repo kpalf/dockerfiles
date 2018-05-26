@@ -1,5 +1,6 @@
 ARG SAG_HOME=/opt/softwareag
-ARG ACCE_VERSION=10.2.0.1
+ARG ACCE_VERSION=10.2.0.2
+ARG ACCE_LIBRARY_VERSION=10.2
 
 # Docker Mulit-stage build
 
@@ -22,13 +23,14 @@ RUN \
 FROM ubuntu:18.04
 ARG SAG_HOME
 ARG ACCE_VERSION
+ARG ACCE_LIBRARY_VERSION
 
 LABEL \
     name="Apama Core Community Edition" \
     arch="x86-64" \
     base="ubuntu:18.04" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20180512" \
+    build-date="20180526" \
     version=${ACCE_VERSION}
 
 # Get/download the compressed archive of Apama Core Community Edition, and unzip it
@@ -36,9 +38,16 @@ COPY --from=acce_build ${SAG_HOME} ${SAG_HOME}
 
 # Set environment variables inside the image
 ENV \
+    SAG_HOME=${SAG_HOME} \
     APAMA_HOME=${SAG_HOME}/Apama \
+    APAMA_WORK=/apama_work \
+    APAMA_LIBRARY_VERSION=${ACCE_LIBRARY_VERSION} \
+    APAMA_PLATFORM=amd64_linux \
     PATH=${SAG_HOME}/Apama/bin:$PATH \
     LD_LIBRARY_PATH=${SAG_HOME}/Apama/lib:${SAG_HOME}/Apama/../common/security/openssl/lib:$LD_LIBRARY_PATH 
+
+
+WORKDIR ${APAMA_WORK}
 
 # Standard server port for the correlator CEP/Streaming-Analytics engine
 EXPOSE 15903

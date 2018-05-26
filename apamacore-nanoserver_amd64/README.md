@@ -11,7 +11,7 @@ You will also see tags for Apama Core on other base images such as CentOS (amd64
 The first nanoserver image for this repository was using version 1709, but as new releases become available it's moved forward, for example with version 1803.
 The nanoserver 1803 based image for Apama Core can be pulled with the following command:
 ```
-docker pull kpalf/apamacore:10.2.0.1_nanoserver_amd64_1803
+docker pull kpalf/apamacore:10.2.0.2_nanoserver_amd64_1803
 ```
 
 ## Unofficial
