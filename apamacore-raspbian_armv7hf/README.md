@@ -9,11 +9,11 @@ The image can be found on DockerHub as specific tags on the `kpalf/apamacore` re
 
 Lookup the tags at: https://hub.docker.com/r/kpalf/apamacore/tags/
 
-You will also see tags for Apama Core on CentOS for amd64 (default), and for Windows Server version 1709 Nano Server (amd64) base images, so please be careful.
+You will also see tags for Apama Core on CentOS for amd64 (default), Ubuntu 18.04 for amd64, a couple of Windows Server Nano Server base images for amd64 (1803, and historically 1709), so please be careful.
 
 For example, for the Raspbian (ARMv7hf) base initially there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.2.0.1_raspbian_armv7hf
+docker pull kpalf/apamacore:10.2.0.2_raspbian_armv7hf
 ```
 
 ## Unofficial
