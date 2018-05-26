@@ -6,7 +6,7 @@
 #   https://hub.docker.com/r/microsoft/nanoserver/
 
 ARG SAG_HOME=C:\\SoftwareAG
-ARG ACCE_VERSION=10.2.0.1
+ARG ACCE_VERSION=10.2.0.2
 ARG ACCE_LIBRARY_VERSION=10.2
 
 #####################################################################
@@ -37,7 +37,7 @@ LABEL \
     arch="x86-64" \
     base="microsoft/nanoserver:1803" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20180513" \
+    build-date="20180526" \
     version=${ACCE_VERSION}
 
 # Set environment variables inside the image
