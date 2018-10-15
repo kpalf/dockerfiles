@@ -6,8 +6,8 @@
 #   https://hub.docker.com/r/microsoft/nanoserver/
 
 ARG SAG_HOME=C:\\SoftwareAG
-ARG ACCE_VERSION=10.2.0.2
-ARG ACCE_LIBRARY_VERSION=10.2
+ARG ACCE_VERSION=10.3.0.1
+ARG ACCE_LIBRARY_VERSION=10.3
 
 #####################################################################
 # Docker Multi-stage build
@@ -29,6 +29,8 @@ RUN \
 # Now make the real image that will be pushed to the registry
 FROM microsoft/nanoserver:1803
 ARG SAG_HOME
+ARG APAMA_HOME=${SAG_HOME}\\Apama
+ARG APAMA_WORK=C:\\ApamaWork
 ARG ACCE_VERSION
 ARG ACCE_LIBRARY_VERSION
 
@@ -37,23 +39,24 @@ LABEL \
     arch="x86-64" \
     base="microsoft/nanoserver:1803" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20180526" \
+    build-date="20181015" \
     version=${ACCE_VERSION}
 
 # Set environment variables inside the image
 ENV \
     SAG_HOME=${SAG_HOME} \
-    APAMA_HOME=${SAG_HOME}\\Apama \
-    APAMA_WORK=C:\\ApamaWork \
+    APAMA_HOME=${APAMA_HOME} \
+    APAMA_WORK=${APAMA_WORK} \
     APAMA_LIBRARY_VERSION=${ACCE_LIBRARY_VERSION} \
-    APAMA_PLATFORM=amd64-win
+    APAMA_PLATFORM=amd64-win \
+    PYTHONPATH=${APAMA_HOME}\\third_party\\python\\lib\\python3.6\\site-packages
 
 
 # Copy the unzipped Apama Core Community Edition, from the first-stage interim builder image
 COPY --from=acce_build ${SAG_HOME} ${SAG_HOME}
 
 WORKDIR ${APAMA_WORK}
-RUN setx PATH %PATH%;%APAMA_HOME%\bin;%APAMA_HOME%\..\common\security\openssl\bin 
+RUN setx PATH %PATH%;%APAMA_HOME%\bin;%APAMA_WORK%\bin;%APAMA_WORK%\lib;%APAMA_HOME%\..\common\security\openssl\bin 
 
 
 # Standard server port for the correlator CEP/Streaming-Analytics engine
