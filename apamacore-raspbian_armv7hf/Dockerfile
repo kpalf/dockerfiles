@@ -1,6 +1,6 @@
 ARG SAG_HOME=/opt/softwareag
-ARG ACCE_VERSION=10.2.0.2
-ARG ACCE_LIBRARY_VERSION=10.2
+ARG ACCE_VERSION=10.3.0.1
+ARG ACCE_LIBRARY_VERSION=10.3
 
 # Docker Mulit-stage build
 
@@ -20,8 +20,15 @@ RUN \
 
 
 # Now make the real image (for some images that does not include the extra 14MB of curl and dependencies)
+# next == Buster (testing)
+# 9 == Stretch (current stable)
+# 8 == Jessie (obsolete stable) ** used here **
+# 7 == Wheezy (obsolete stable)
+# 6 == Squeeze (obsolete stable)
 FROM resin/rpi-raspbian:jessie
 ARG SAG_HOME
+ARG APAMA_HOME=${SAG_HOME}/Apama
+ARG APAMA_WORK=/apama_work
 ARG ACCE_VERSION
 ARG ACCE_LIBRARY_VERSION
 
@@ -30,28 +37,36 @@ LABEL \
     arch="armv7hf" \
     base="resin/rpi-raspbian:jessie" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20180526" \
+    build-date="20181015" \
     version=${ACCE_VERSION}
 
-# Get/download the compressed archive of Apama Core Community Edition, and unzip it
-COPY --from=acce_build ${SAG_HOME} ${SAG_HOME}
+# Set the shell and create user identical to the official SAG images
+SHELL ["/bin/bash", "-c"]
+RUN groupadd -g 1724 sagadmin && useradd -d /opt/softwareag --no-create-home -g 1724 -u 1724 sagadmin
+
+# Copy the unzipped Apama Core Community Edition from the "acce_build" interim image, with correct user:group
+COPY --from=acce_build --chown=sagadmin:sagadmin ${SAG_HOME} ${SAG_HOME}
 
 # Set environment variables inside the image
 ENV \
     SAG_HOME=${SAG_HOME} \
-    APAMA_HOME=${SAG_HOME}/Apama \
-    APAMA_WORK=/apama_work \
+    APAMA_HOME=${APAMA_HOME} \
+    APAMA_WORK=${APAMA_WORK} \
     APAMA_LIBRARY_VERSION=${ACCE_LIBRARY_VERSION} \
     APAMA_PLATFORM=armv7_linux \
-    PATH=${SAG_HOME}/Apama/bin:$PATH \
-    LD_LIBRARY_PATH=${SAG_HOME}/Apama/lib:${SAG_HOME}/Apama/../common/security/openssl/lib:$LD_LIBRARY_PATH 
+    PATH=${APAMA_HOME}/bin:$PATH \
+    LD_LIBRARY_PATH=${APAMA_HOME}/lib:${APAMA_WORK}/lib:${APAMA_HOME}/../common/security/openssl/lib:$LD_LIBRARY_PATH \
+    PYTHONPATH=${APAMA_HOME}/third_party/python/lib/python3.6/site-packages
 
+RUN ldconfig
 
 WORKDIR ${APAMA_WORK}
+RUN chown sagadmin:sagadmin ${APAMA_WORK}
 
 # Standard server port for the correlator CEP/Streaming-Analytics engine
 EXPOSE 15903
 
 # Primary binary for the CEP/Streaming-Analytics engine, but the image also 
 # contains the standard tools such as engine_inject, engine_send, etc
+USER sagadmin:sagadmin
 CMD ["correlator"]

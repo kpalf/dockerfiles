@@ -9,18 +9,23 @@ The image can be found on DockerHub as specific tags on the `kpalf/apamacore` re
 
 Lookup the tags at: https://hub.docker.com/r/kpalf/apamacore/tags/
 
-You will also see tags for Apama Core on CentOS for amd64 (default), Ubuntu 18.04 for amd64, a couple of Windows Server Nano Server base images for amd64 (1803, and historically 1709), so please be careful.
+You will also see tags for Apama Core on CentOS for amd64 (default), Ubuntu 18.10 for amd64, a couple of Windows Server Nano Server base images for amd64 (1809, 1803, and historically 1709), so please be careful.
 
-For example, for the Raspbian (ARMv7hf) base initially there will be the following tagged image that you can pull with the following command:
+For example, for the Raspbian (ARMv7hf) base there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.2.0.2_raspbian_armv7hf
+docker pull kpalf/apamacore:10.3.0.1_raspbian_armv7hf
 ```
+
+## User ID
+Note that since version 10.3 these images now specify that the file and process ownership within the images is sagadmin:sagadmin, in order to more closely match the way that the official SAG images would be used.
 
 ## Unofficial
 This is an unofficial, community-member contribution only.  
 Use at your own risk.
 
-At the time of writing, the only "official" distribution of Apama by Software AG as a pre-built amd64 Docker image was the one on a linux CentOS:7 (amd64) base image and distributed (free) on DockerStore: https://store.docker.com/images/apama-correlator
+At the time of writing, the only "official" distribution of Apama by Software AG as a pre-built Docker image are those on a linux CentOS:7 (amd64) base image and distributed (free) on DockerStore: https://store.docker.com/images/apama-correlator
+
+Those "official" images on DockerStore (apama-correlator and apama-builder) are much larger than these Apama Core Community Edition images as the offial ones contain not only client APIs to allow Apama to interact with other Software AG products (e.g. TerracottaDB, Universal Messaging, Digital Event Services, Cumulocity) but also large third-parties such as a JVM.
 
 ## Apama Community
 To find out more about Apama, access full documentation, and download the distribution and samples, visit http://www.apamacommunity.com
