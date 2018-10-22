@@ -36,7 +36,7 @@ LABEL \
     arch="x86-64" \
     base="ubuntu:18.10" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20181014" \
+    build-date="20181022" \
     version=${ACCE_VERSION}
 
 # Set the shell and create user identical to the official SAG images
@@ -54,7 +54,7 @@ ENV \
     APAMA_LIBRARY_VERSION=${ACCE_LIBRARY_VERSION} \
     APAMA_PLATFORM=amd64_linux \
     PATH=${APAMA_HOME}/bin:$PATH \
-    LD_LIBRARY_PATH=${APAMA_HOME}/lib:${APAMA_WORK}/lib:${APAMA_HOME}/../common/security/openssl/lib:$LD_LIBRARY_PATH \
+    LD_LIBRARY_PATH=${APAMA_HOME}/lib:${APAMA_WORK}/lib:$LD_LIBRARY_PATH \
     PYTHONPATH=${APAMA_HOME}/third_party/python/lib/python3.6/site-packages
 
 RUN ldconfig
