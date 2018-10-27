@@ -11,29 +11,29 @@ ARG APAMA_HOME=${SAG_HOME}/Apama
 ARG ACCE_VERSION
 
 # Start REMOVING unnecessary files from the interim builder image
-RUN rm -r ${SAG_HOME}/Release_Notes.pdf 
-#RUN rm -r ${SAG_HOME}/3rdPartyLicenses.pdf 
-RUN rm -r ${SAG_HOME}/common/lib
-RUN rm -r ${APAMA_HOME}/monitors/R
-RUN rm -r ${APAMA_HOME}/lib/rpath
-RUN rm -r ${APAMA_HOME}/lib/libRPlugin.*
-
-RUN rm -r ${APAMA_HOME}/monitors/*JMS*.mon
-RUN rm -r ${APAMA_HOME}/monitors/EDAUtils.mon
-RUN rm -r ${APAMA_HOME}/monitors/matlab
-RUN rm -r ${APAMA_HOME}/monitors/query_support
-RUN rm -r ${APAMA_HOME}/utilities
-RUN rm -r ${APAMA_HOME}/include
-RUN rm -r ${APAMA_HOME}/lib/*.jar
-RUN rm -r ${APAMA_HOME}/third_party
-RUN rm -r ${APAMA_HOME}/bin/pysys ${APAMA_HOME}/pysys.pysys
-RUN rm -r ${APAMA_HOME}/bin/engine_debug
-RUN rm -r ${APAMA_HOME}/bin/epl_coverage
-RUN rm -r ${APAMA_HOME}/connectivity/bundles
+RUN rm -r ${SAG_HOME}/Release_Notes.pdf && \
+    rm -r ${SAG_HOME}/3rdPartyLicenses.pdf && \
+    rm -r ${SAG_HOME}/common/lib && \
+    rm -r ${APAMA_HOME}/monitors/R && \
+    rm -r ${APAMA_HOME}/lib/rpath && \
+    rm -r ${APAMA_HOME}/lib/libRPlugin.* && \
+    rm -r ${APAMA_HOME}/monitors/*JMS*.mon && \
+    rm -r ${APAMA_HOME}/monitors/EDAUtils.mon && \
+    rm -r ${APAMA_HOME}/monitors/matlab && \
+    rm -r ${APAMA_HOME}/monitors/query_support && \
+    rm -r ${APAMA_HOME}/utilities && \
+    rm -r ${APAMA_HOME}/include && \
+    rm -r ${APAMA_HOME}/lib/*.jar && \
+    rm -r ${APAMA_HOME}/third_party && \
+    rm -r ${APAMA_HOME}/bin/pysys ${APAMA_HOME}/bin/pysys.py && \
+    rm -r ${APAMA_HOME}/bin/engine_debug && \
+    rm -r ${APAMA_HOME}/bin/epl_coverage && \
+    rm -r ${APAMA_HOME}/connectivity/bundles
 
 # Strip the binaries
+USER root
 RUN apt-get update && apt-get install -y binutils
-RUN strip ${APAMA_HOME}/bin/* && strip ${APAMA_HOME}/lib/*.so* && strip ${SAG_HOME}/common/security/openssl/lib/*.so*
+RUN strip ${APAMA_HOME}/bin/* || true && strip ${APAMA_HOME}/lib/*.so* && strip ${SAG_HOME}/common/security/openssl/lib/*.so*
 
 
 
@@ -44,7 +44,7 @@ RUN strip ${APAMA_HOME}/bin/* && strip ${APAMA_HOME}/lib/*.so* && strip ${SAG_HO
 # 8 == Jessie (obsolete stable) ** used here **
 # 7 == Wheezy (obsolete stable)
 # 6 == Squeeze (obsolete stable)
-FROM kpalf/apamacore:${ACCE_VERSION}_experimental-debian-slim_amd64
+FROM debian:stretch-slim
 ARG SAG_HOME
 ARG APAMA_HOME=${SAG_HOME}/Apama
 ARG APAMA_WORK=/apama_work
