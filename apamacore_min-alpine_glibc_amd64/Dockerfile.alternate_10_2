@@ -1,0 +1,39 @@
+from frolvlad/alpine-oraclejre8:slim
+#from frolvlad/alpine-glibc
+
+LABEL \
+    status="Experimental" \
+    name="Apama Core Community Edition - Minimal (Alpine)" \
+    arch="x86-64" \
+    base="frolvlad/alpine-oraclejre8:slim" \
+    maintainer="Kev Palfreyman (@kpalf)" \
+    build-date="20180506"
+
+#RUN apk --no-cache add --update libstdc++ curl
+
+# Get/download the compressed archive of Apama Core Community Edition, and unzip it
+RUN \
+    apk --no-cache add --update libstdc++ curl && \
+    ACCE_BASE_URL="https://downloads.apamacommunity.com/apama-core/10.2.0.1" && \
+    ACCE_TGZ_FILE="apama_core_10.2.0.1_amd64_linux.tar.gz" && \
+    ACCE_INSTALL_FOLDER="/opt/apamacce" && \
+    mkdir -p $ACCE_INSTALL_FOLDER && \
+    curl -s $ACCE_BASE_URL/$ACCE_TGZ_FILE | tar -xvz -C $ACCE_INSTALL_FOLDER && \
+    rm -fr $ACCE_INSTALL_FOLDER/Apama/third_party && \
+    rm -fr $ACCE_INSTALL_FOLDER/Apama/include && \
+    rm -fr $ACCE_INSTALL_FOLDER/Apama/utilities && \
+    rm -fr $ACCE_INSTALL_FOLDER/Apama/etc && \
+    rm -fr $ACCE_INSTALL_FOLDER/Apama/lib/*.jar && \
+    apk --no-cache del curl
+
+# Set environment variables inside the image
+ENV \
+    APAMA_HOME=/opt/apamacce/Apama/ \
+    PATH=/opt/apamacce/Apama/bin:$PATH \
+    LD_LIBRARY_PATH=/opt/apamacce/Apama/lib:/opt/apamacce/Apama/../common/security/openssl/lib:$LD_LIBRARY_PATH 
+
+# Standard server port for the correlator CEP/Streaming-Analytics engine
+EXPOSE 15903
+
+# Primary binary for the CEP/Streaming-Analytics engine, but the image also contains the standard tools such as engine_inject, engine_send, etc
+CMD ["correlator"]
