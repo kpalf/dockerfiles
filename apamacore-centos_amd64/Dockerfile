@@ -1,5 +1,5 @@
 ARG SAG_HOME=/opt/softwareag
-ARG ACCE_VERSION=10.3.0.1
+ARG ACCE_VERSION=10.3.1.1
 ARG ACCE_LIBRARY_VERSION=10.3
 
 # Docker Mulit-stage build
@@ -32,7 +32,7 @@ LABEL \
     arch="x86-64" \
     base="centos:7" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20181022" \
+    build-date="20190428" \
     version=${ACCE_VERSION}
 
 # Set the shell and create user identical to the official SAG images

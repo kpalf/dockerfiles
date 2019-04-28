@@ -1,11 +1,11 @@
 ARG SAG_HOME=/opt/softwareag
-ARG ACCE_VERSION=10.3.0.1
+ARG ACCE_VERSION=10.3.1.1
 ARG ACCE_LIBRARY_VERSION=10.3
 
 # Docker Mulit-stage build
 
 # First our builder image that does the download of Apama Core (some base images have to have curl added here)
-FROM resin/rpi-raspbian:jessie as acce_build
+FROM balenalib/rpi-raspbian:jessie as acce_build
 ARG SAG_HOME
 ARG ACCE_VERSION
 
@@ -25,7 +25,7 @@ RUN \
 # 8 == Jessie (obsolete stable) ** used here **
 # 7 == Wheezy (obsolete stable)
 # 6 == Squeeze (obsolete stable)
-FROM resin/rpi-raspbian:jessie
+FROM balenalib/rpi-raspbian:jessie
 ARG SAG_HOME
 ARG APAMA_HOME=${SAG_HOME}/Apama
 ARG APAMA_WORK=/apama_work
@@ -35,9 +35,9 @@ ARG ACCE_LIBRARY_VERSION
 LABEL \
     name="Apama Core Community Edition" \
     arch="armv7hf" \
-    base="resin/rpi-raspbian:jessie" \
+    base="balenalib/rpi-raspbian:jessie" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20181022" \
+    build-date="20190428" \
     version=${ACCE_VERSION}
 
 # Set the shell and create user identical to the official SAG images

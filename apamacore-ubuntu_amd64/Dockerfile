@@ -1,11 +1,11 @@
 ARG SAG_HOME=/opt/softwareag
-ARG ACCE_VERSION=10.3.0.1
+ARG ACCE_VERSION=10.3.1.1
 ARG ACCE_LIBRARY_VERSION=10.3
 
 # Docker Mulit-stage build
 
 # First our builder image that has curl added to it and does the download of Apama Core
-FROM ubuntu:18.10 as acce_build
+FROM ubuntu:19.04 as acce_build
 ARG SAG_HOME
 ARG ACCE_VERSION
 
@@ -20,6 +20,7 @@ RUN \
 
 
 # Now make the real image that does not include 14MB of curl and dependencies
+#19.04==disco (non-LTS)
 #18.10==cosmic (non-LTS)
 #18.04==bionic (LTS)
 #16.04==xenial (LTS)
@@ -34,9 +35,9 @@ ARG ACCE_LIBRARY_VERSION
 LABEL \
     name="Apama Core Community Edition" \
     arch="x86-64" \
-    base="ubuntu:18.10" \
+    base="ubuntu:19.04" \
     maintainer="Kev Palfreyman (@kpalf)" \
-    build-date="20181022" \
+    build-date="20190428" \
     version=${ACCE_VERSION}
 
 # Set the shell and create user identical to the official SAG images

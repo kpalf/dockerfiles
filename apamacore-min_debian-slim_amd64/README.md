@@ -13,7 +13,7 @@ You will also see tags for Apama Core on CentOS 7 for amd64, Ubuntu for amd64, a
 
 For example, for the debian-slim (amd64) base initially there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore-min:10.3.0.1_experimental-debian-slim_amd64
+docker pull kpalf/apamacore-min:10.3.1.1_experimental-debian-slim_amd64
 ```
 
 ## User ID
@@ -33,7 +33,7 @@ To find out more about Apama, access full documentation, and download the distri
 
 ## Base image
 The base image is "debian:stretch-slim" ("stretch" == 9 == "stable").
-At the time of writing (Oct 2018) Stretch-slim was 22MB, which is smaller than Buster-slim at 26MB (buster==testing==9.5)
+At the time of writing (Oct 2018, update April 2019) Stretch-slim was 22MB, which is smaller than Buster-slim at 27MB (buster==testing==9.5)
 
 
 

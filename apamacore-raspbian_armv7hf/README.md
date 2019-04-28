@@ -13,7 +13,7 @@ You will also see tags for Apama Core on CentOS for amd64 (default), Ubuntu 18.1
 
 For example, for the Raspbian (ARMv7hf) base there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.3.0.1_raspbian_armv7hf
+docker pull kpalf/apamacore:10.3.1.1_raspbian_armv7hf
 ```
 
 ## User ID
@@ -32,13 +32,13 @@ To find out more about Apama, access full documentation, and download the distri
 
 
 ## Base image
-The base image is "resin/rpi-raspbian:jessie", but at some point I'll upgrade to "stretch".
+The base image is "balenalib/rpi-raspbian:jessie", (resin repo renamed to balenalib) but at some point I'll upgrade to "stretch".
 The Raspbian base is actually armv6, but that ought to be OK as the OS direct from RaspberryPi.org is the same.
 It's possible in future we might switch the base image from Raspbian (armv6hf) to Debian (armv7hf).
 
-See the Docker Hub info on the base image: https://hub.docker.com/r/resin/rpi-raspbian/
-The base image is supplied and maintained by the good folks at http://resin.io, see their
-documentation for further details: https://docs.resin.io/reference/base-images/resin-base-images/
+See the Docker Hub info on the base image: https://hub.docker.com/r/balenalib/rpi-raspbian
+The base image is supplied and maintained by the good folks at https://www.balena.io/ (previosuly http://resin.io), see their
+documentation for further details: https://www.balena.io/docs/reference/base-images/base-images/
 
 
 ## Licenses
