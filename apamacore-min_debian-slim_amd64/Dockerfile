@@ -12,7 +12,7 @@ ARG ACCE_VERSION
 
 # Start REMOVING unnecessary files from the interim builder image
 RUN rm -r ${SAG_HOME}/Release_Notes.pdf && \
-    rm -r ${SAG_HOME}/3rdPartyLicenses.pdf && \
+    rm -r ${SAG_HOME}/3rdPartyLicenses_PAK_ApamaCoreEdition.pdf && \
     rm -r ${SAG_HOME}/common/lib && \
     rm -r ${APAMA_HOME}/monitors/R && \
     rm -r ${APAMA_HOME}/lib/rpath && \
