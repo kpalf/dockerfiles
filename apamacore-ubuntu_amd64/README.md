@@ -1,5 +1,5 @@
 # (Unofficial) Apama Core Community Edition on Ubuntu Linux 
-Dockerfile for an _unofficial_ Apama Core Community Edition on a Ubuntu base image. Currently this is with the Ubuntu 18.10 release.
+Dockerfile for an _unofficial_ Apama Core Community Edition on a Ubuntu base image. Currently this is with the Ubuntu 19.04 release.
 The Ubuntu base image used to be quite large but as of 18.04 are significantly smaller than the CentOS 7 (7.4 / 7.5) base images.
 
 ## Images and tags
@@ -11,7 +11,7 @@ You will also see tags for Apama Core on CentOS 7 for amd64, a couple of Windows
 
 For example, for the Ubuntu (amd64) base initially there will be the following tagged image that you can pull with the following command:
 ```
-docker pull kpalf/apamacore:10.3.0.1_ubuntu_amd64
+docker pull kpalf/apamacore:10.3.1.1_ubuntu_amd64
 ```
 
 ## User ID
@@ -30,9 +30,11 @@ To find out more about Apama, access full documentation, and download the distri
 
 
 ## Base image
-The base image is "ubuntu:18.10" ("cosmic") - non-LTS.
+The base image for Apama 10.3.1 is "ubuntu:19.04" ("disco") - non-LTS.
 
-Previous images (Apama 10.2) were using Ubuntu 18.04 ("bionic") LTS.
+Previous images:
+* Apama 10.3.0 using Ubuntu 18.10 ("cosmic") - non-LTS.
+* Apama 10.2 using Ubuntu 18.04 ("bionic") LTS.
 
 
 
