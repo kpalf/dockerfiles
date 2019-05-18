@@ -12,9 +12,33 @@ ARG SAG_HOME
 ARG APAMA_HOME=${SAG_HOME}/Apama
 ARG ACCE_VERSION
 
-# Start REMOVING unnecessary files from the interim builder image
-#RUN rm -r ${SAG_HOME}/Release_Notes.pdf && \
-#    rm -r ${APAMA_HOME}/connectivity/bundles
+# REMOVING even more unnecessary files from the interim builder image 
+# The below set only saves about 2MB out of a full busybox image of around 106MB (down to 104)
+# This first set would save some of that, but not worth removing for the value they bring
+#RUN rm -r ${APAMA_HOME}/bin/component_management* && \
+#    rm -r ${APAMA_HOME}/bin/engine_* && \
+#    rm -r ${APAMA_HOME}/bin/httpserver_passman && \
+#    rm -r ${APAMA_HOME}/lib/libUMConnectivity* 
+
+# These get 1MB (of the 2MB mentioned above), but really it's more cleaning up unnecessary files than space saving
+RUN rm -r ${APAMA_HOME}/connectivity && \
+    rm -r ${APAMA_HOME}/etc/* && \
+    rm -r ${APAMA_HOME}/lib/libJMS* && \
+    rm -r ${APAMA_HOME}/lib/libapiaf*   
+
+
+
+
+# Most of the size is in just a few files:
+# 40 MB bin/correlator
+# 27 MB lib/libicudata.so* 
+#  8 MB lib/libapclient.so*
+# then we're into files between 2-3MB: 
+#   common/security/openssl/lib/libcrypto.so.*
+#   lib/libicui18n.so*
+#   lib/libPocoFoundation.so.*
+# then 4 files between 1-2MB
+# everything else in less than 1MB
 
 
 
